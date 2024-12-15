@@ -28,7 +28,8 @@
             border-radius: 15px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             margin-top: 20px;
-            width: 50%;
+            width: 80%; /* Adjusted for smaller width */
+            max-width: 600px; /* Set max-width for mobile screens */
             margin-left: auto;
             margin-right: auto;
         }
@@ -38,13 +39,12 @@
             justify-content: center;
             align-items: center;
             margin-bottom: 15px;
+            flex-direction: column; /* Stack label and input */
         }
 
         .form-group label {
             font-size: 1.2em;
-            margin-right: 10px;
-            width: 200px;
-            text-align: right;
+            margin-bottom: 5px;
             color: #fffa;
         }
 
@@ -52,7 +52,8 @@
         .form-group select {
             font-size: 1.2em;
             padding: 8px;
-            width: 250px;
+            width: 100%; /* Ensure inputs take full width */
+            max-width: 250px; /* Limit the max width of the inputs */
             text-align: center;
             border-radius: 8px;
             border: 1px solid #fffa;
@@ -118,6 +119,7 @@
             align-items: center;
             margin-top: 20px;
             width: 100%;
+            flex-direction: column; /* Stack results vertically */
         }
 
         .decorative {
@@ -145,6 +147,36 @@
 
         .footer a:hover {
             text-decoration: underline;
+        }
+
+        /* Media query for mobile screens */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .form-group input,
+            .form-group select {
+                width: 90%; /* Inputs take up most of the width on mobile */
+            }
+
+            button {
+                font-size: 1em;
+                padding: 10px 15px;
+            }
+
+            #result {
+                font-size: 1.2em;
+            }
+
+            .result-label,
+            .result-value {
+                font-size: 1.1em;
+            }
         }
     </style>
 </head>
@@ -245,11 +277,10 @@
             // Handle the integer part (add commas)
             let lastThree = integerPart.substring(integerPart.length - 3);
             let otherNumbers = integerPart.substring(0, integerPart.length - 3);
-            if (otherNumbers != '') {
-                lastThree = ',' + lastThree;
-            }
-            let indianNumber = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
-            return indianNumber + "." + decimalPart;
+            if (otherNumbers != "") lastThree = "," + lastThree;
+            let formattedInteger = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+
+            return formattedInteger + "." + decimalPart;
         }
     </script>
 
