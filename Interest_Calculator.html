@@ -8,7 +8,8 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            background: url('https://img.freepik.com/free-vector/gradient-dynamic-blue-lines-background_23-2148995756.jpg?t=st=1734303047~exp=1734306647~hmac=916979e9fbc0d99f05b37f2486375e112bfa388cbbcccf85698bd9a128bad240&w=900') no-repeat center center fixed;
+            background-size: cover;
             color: #fff;
             text-align: center;
             margin-top: 50px;
@@ -18,7 +19,7 @@
         h1 {
             font-size: 2.5em;
             margin-bottom: 20px;
-            color: #fff;
+            color: #000; /* Black color for the heading */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
@@ -28,8 +29,8 @@
             border-radius: 15px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             margin-top: 20px;
-            width: 80%; /* Adjusted for smaller width */
-            max-width: 600px; /* Set max-width for mobile screens */
+            width: 80%;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -39,26 +40,27 @@
             justify-content: center;
             align-items: center;
             margin-bottom: 15px;
-            flex-direction: column; /* Stack label and input */
+            flex-direction: column;
         }
 
         .form-group label {
             font-size: 1.2em;
             margin-bottom: 5px;
-            color: #fffa;
+            color: #e7dbdb; /* Black color for labels */
         }
 
         .form-group input,
         .form-group select {
             font-size: 1.2em;
             padding: 8px;
-            width: 100%; /* Ensure inputs take full width */
-            max-width: 250px; /* Limit the max width of the inputs */
+            width: 100%;
+            max-width: 250px;
             text-align: center;
             border-radius: 8px;
-            border: 1px solid #fffa;
+            border: 2px solid #aa6b6b; /* Black border for inputs */
             background-color: #fff;
-            color: #333;
+            color: #000; /* Black text color */
+            autocomplete: off; /* Disable autocomplete */
         }
 
         button {
@@ -80,13 +82,13 @@
         #result {
             font-size: 1.5em;
             margin-top: 20px;
-            color: #333;
+            color: #000; /* Black color for result text */
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
 
         .bold {
             font-weight: bold;
-            color: #fffa;
+            color: #000; /* Black color for bold text */
         }
 
         .formatted {
@@ -102,7 +104,7 @@
             width: 50%;
             text-align: right;
             padding-right: 10px;
-            color: #fffa;
+            color: #b42e2e; /* Black color for labels in results */
         }
 
         .result-value {
@@ -110,21 +112,21 @@
             display: inline-block;
             width: 40%;
             text-align: left;
-            color: rgba(255, 255, 255, 0.667);
+            color: #000; /* Black color for result values */
         }
 
         .result-container {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             margin-top: 20px;
             width: 100%;
-            flex-direction: column; /* Stack results vertically */
+            flex-direction: row;
         }
 
         .decorative {
             font-size: 5em;
-            color: #fff;
+            color: #000; /* Black color for the emoji */
             margin-top: 50px;
         }
 
@@ -135,12 +137,12 @@
 
         .footer {
             font-size: 1.2em;
-            color: #fffa;
+            color: #eade0b;
             margin-top: 30px;
         }
 
         .footer a {
-            color: #fffa;
+            color: #171616;
             text-decoration: none;
             font-weight: bold;
         }
@@ -149,7 +151,6 @@
             text-decoration: underline;
         }
 
-        /* Media query for mobile screens */
         @media (max-width: 600px) {
             h1 {
                 font-size: 2em;
@@ -161,7 +162,7 @@
 
             .form-group input,
             .form-group select {
-                width: 90%; /* Inputs take up most of the width on mobile */
+                width: 90%;
             }
 
             button {
@@ -195,12 +196,12 @@
 
         <div class="form-group">
             <label for="duration">Duration:</label>
-            <input type="number" id="duration" placeholder="Enter duration"><br><br>
+            <input type="number" id="duration" placeholder="Enter Month or Year" autocomplete="off"><br><br>
         </div>
 
         <div class="form-group">
             <label for="durationType">Duration Type:</label>
-            <select id="durationType">
+            <select id="durationType" autocomplete="off">
                 <option value="months">Months</option>
                 <option value="years">Years</option>
             </select>
@@ -208,7 +209,7 @@
 
         <div class="form-group">
             <label for="interestRate">Annual Interest Rate (%):</label>
-            <input type="number" id="interestRate" placeholder="Enter interest rate"><br><br>
+            <input type="number" id="interestRate" placeholder="Enter interest rate" autocomplete="off"><br><br>
         </div>
 
         <button onclick="calculateInterest()">Calculate Interest</button>
@@ -219,39 +220,33 @@
     <div class="emoji">✨✨✨</div>
 
     <div class="footer">
-        <p>Created with Anand Nayak for you! <br> <a href="https://github.com/anandnayak812" target="_blank">Visit my GitHub</a></p>
+        <p>Created By Anand Nayak for you!</span> <br> 
+            <a href="https://github.com/anandnayak812" target="_blank">Visit my GitHub</a><br>
+            For Age Calculator, go to this link: <a href="https://anandnayak812.github.io/Age_Calculator/Date_File.html" target="_blank">Age Calculator</a>
+        </p>
     </div>
 
     <script>
-        // Function to calculate the total interest
         function calculateInterest() {
-            // Retrieve input values
             const amount = parseFloat(document.getElementById('amount').value);
             const duration = parseInt(document.getElementById('duration').value);
             const interestRate = parseFloat(document.getElementById('interestRate').value);
             const durationType = document.getElementById('durationType').value;
 
-            // Validate inputs
             if (isNaN(amount) || isNaN(duration) || isNaN(interestRate)) {
                 document.getElementById('result').innerHTML = "Please enter valid inputs.";
                 return;
             }
 
-            // Convert years to months if duration is in years
             let months = durationType === "years" ? duration * 12 : duration;
 
-            // Calculate interest for 1 month
             const monthlyInterest = (amount * interestRate) / 100;
-
-            // Calculate total interest for given months
             const totalInterest = (amount * interestRate * months) / 100;
 
-            // Format results with commas for thousands (Indian Numbering System)
             const formattedMonthlyInterest = formatNumberIndian(monthlyInterest);
             const formattedTotalInterest = formatNumberIndian(totalInterest);
             const formattedTotalAmount = formatNumberIndian(amount + totalInterest);
 
-            // Display results
             document.getElementById('result').innerHTML =
                 `<div class="result-container">
                     <div class="result-label"><span class="bold">For one Month:</span></div>
@@ -267,14 +262,12 @@
                 </div>`;
         }
 
-        // Function to format numbers according to Indian Numbering System (2,20,000 style)
         function formatNumberIndian(number) {
-            let num = number.toFixed(2); // Round to 2 decimal places
+            let num = number.toFixed(2);
             let parts = num.split(".");
             let integerPart = parts[0];
             let decimalPart = parts[1];
 
-            // Handle the integer part (add commas)
             let lastThree = integerPart.substring(integerPart.length - 3);
             let otherNumbers = integerPart.substring(0, integerPart.length - 3);
             if (otherNumbers != "") lastThree = "," + lastThree;
